@@ -1,0 +1,69 @@
+---
+title: "How I Built This Website"
+author: "Landon Teeter"
+date: "2026-02-17"
+categories: [quarto, web development]
+description: "A walkthrough of how I migrated my CV site from Jekyll to Quarto and set up automated deployment with GitHub Actions."
+---
+
+## Why Quarto?
+
+I originally hosted my CV as a simple Markdown page on GitHub Pages using the Jekyll Cayman theme. It worked, but I wanted something more flexible — a site that could grow with me as I move through graduate school. Specifically, I wanted a place to write blog posts alongside my CV without managing a complex web framework.
+
+[Quarto](https://quarto.org) checked every box:
+
+- It renders plain Markdown (and Jupyter notebooks) into a polished website.
+- It has built-in support for blog listings with categories and dates.
+- It produces a static site that GitHub Pages can serve directly.
+- The configuration is a single `_quarto.yml` file — no heavy toolchain required.
+
+## Project Structure
+
+The site is organized like this:
+
+```
+CVLandon_Teeter/
+├── _quarto.yml          # Site configuration
+├── index.qmd            # CV (front page)
+├── blog.qmd             # Blog listing page
+├── styles.css           # Custom styling
+├── posts/
+│   └── building-this-site/
+│       └── index.qmd    # This blog post
+└── .github/
+    └── workflows/
+        └── publish.yml  # GitHub Actions deployment
+```
+
+## Step by Step
+
+### 1. Converting the CV
+
+My CV was already written in Markdown (`index.md`). I renamed it to `index.qmd` and added a YAML front-matter block so Quarto knows how to render it. I also cleaned up the formatting — replacing escaped hyphens with proper list items and adding section headers for the table of contents.
+
+### 2. Adding Blog Support
+
+Quarto makes blogs easy. I created a `blog.qmd` file with a `listing` directive that automatically discovers posts from the `posts/` directory. Each post lives in its own subfolder with an `index.qmd` file, which keeps things organized as the number of posts grows.
+
+### 3. Configuring the Site
+
+The `_quarto.yml` file ties everything together:
+
+- **`project.type: website`** tells Quarto to build a full site with navigation.
+- **`website.navbar`** adds links to the CV and Blog pages in the top navigation bar.
+- **`format.html.theme: cosmo`** applies a clean Bootstrap theme.
+
+### 4. Automated Deployment with GitHub Actions
+
+I wrote a GitHub Actions workflow (`.github/workflows/publish.yml`) that:
+
+1. Triggers on every push to the `main` branch.
+2. Installs Quarto in the CI environment.
+3. Runs `quarto render` to build the site.
+4. Deploys the rendered output to GitHub Pages using the `actions/deploy-pages` action.
+
+This means every time I push a change — whether it is an update to my CV or a new blog post — the site rebuilds and deploys automatically.
+
+## What is Next
+
+Now that the infrastructure is in place, I plan to use this blog to document my graduate research, share notes on papers I am reading, and write about tools and techniques I pick up along the way. Stay tuned!
