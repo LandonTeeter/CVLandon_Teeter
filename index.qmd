@@ -8,7 +8,7 @@ toc-title: "Sections"
 # Landon Blake Teeter
 
 ::: {.cv-contact}
-(717) 327-1581 | [landon.teeter@gmail.com](mailto:landon.teeter@gmail.com) | [lzt5326@psu.edu](mailto:lzt5326@psu.edu)
+717-327-1581 | [landon.teeter@gmail.com](mailto:landon.teeter@gmail.com) | [lzt5326@psu.edu](mailto:lzt5326@psu.edu)
 :::
 :::
 
