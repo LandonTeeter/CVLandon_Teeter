@@ -5,3 +5,5 @@ listing:
   sort: "date desc"
   type: default
 ---
+
+I have recently joined the Miyashiro Lab at Penn State Univerity where I am researching the regultion and expresssion of T6SS Effectors
